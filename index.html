@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Reflection Page</title>
+
+    <style>
+        body {
+            background-color: lightyellow;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        h1 {
+            color: blue;
+        }
+
+        textarea {
+            width: 80%;
+            height: 120px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: lightblue;
+            padding: 10px;
+            border: 2px solid blue;
+            cursor: pointer;
+        }
+
+        #saved {
+            background-color: lightblue;
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>My Learning Reflection</h1>
+
+    <p>Here are three things I learned while making my website!</p>
+
+    <form id="myForm">
+        <textarea id="myText" placeholder="Write three sentences here..."></textarea>
+        <br><br>
+        <button type="submit">Save My Reflection</button>
+    </form>
+
+    <h2>My Saved Reflection</h2>
+
+    <div id="saved">
+        <p id="showText">The reflection will show up here!</p>
+    </div>
+
+    <script>
+        var myText = document.getElementById("myText");
+        var showText = document.getElementById("showText");
+        var myForm = document.getElementById("myForm");
+
+        var oldText = localStorage.getItem("reflection");
+
+        if (oldText) {
+            myText.value = oldText;
+            showText.textContent = oldText;
+        }
+
+        myForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var answer = myText.value.trim();
+
+            if (answer !== "") {
+                localStorage.setItem("reflection", answer);
+                showText.textContent = answer;
+            }
+        });
+    </script>
+
+</body>
+</html>
